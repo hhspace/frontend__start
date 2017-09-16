@@ -1,2 +1,28 @@
 @import "includes/variables";
 @import "includes/reboot";
+
+
+// Подключаем стили модулей
+
+// - Блог
+@import "../../views/module/blog/articles/style";
+@import "../../views/module/blog/category/style";
+@import "../../views/module/blog/preview/style";
+
+// - Комментарияя
+@import "../../views/module/comments/style";
+
+// - Поиск по сайту
+@import "../../views/module/search/style";
+
+// - Пользователи
+@import "../../views/module/users/access_denied/style";
+@import "../../views/module/users/comments_list/style";
+@import "../../views/module/users/edit/style";
+@import "../../views/module/users/forms/style";
+@import "../../views/module/users/login/style";
+@import "../../views/module/users/messages/style";
+@import "../../views/module/users/profile/style";
+@import "../../views/module/users/registration/style";
+@import "../../views/module/users/site_disabled/style";
+@import "../../views/module/users/user_list/style";

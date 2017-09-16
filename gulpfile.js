@@ -148,11 +148,11 @@ gulp.task('watch', function(){
 });
 
 gulp.task('deploy', function () {
-    return gulp.src('build/**/*')
+    return gulp.src('')
         .pipe(ftp({
-            host: 'dev.ucoz.club',
-            user: 'sdev',
-            pass: '1q2w3e4r5t'
+            host: '',
+            user: '',
+            pass: ''
         }))
         .pipe(gutil.noop());
 });

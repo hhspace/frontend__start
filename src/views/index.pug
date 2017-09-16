@@ -1,8 +1,10 @@
 doctype html
 html
     head
-        title Главная
-        link(type='text/css' rel='stylesheet' href='css/main.css')
+        include ../config/config
     body
-        p some footer content
-        script(src='js/main.js')
+        include blocks/global/header
+        h1 Главная страница
+
+        include blocks/global/footer
+        script(src='/assets/js/main.js')

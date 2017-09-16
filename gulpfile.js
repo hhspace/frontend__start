@@ -17,27 +17,35 @@ var gulp        = require('gulp'),
 var path = {
     build: {
         html: 'build/',
-        js: 'build/js/',
-        css: 'build/css/',
-        img: 'build/img/',
-        fonts: 'build/fonts/'
+        js: 'build/assets/js/',
+        css: 'build/assets/css/',
+        img: 'build/assets/img/',
+        fonts: 'build/assets/fonts/'
     },
     src: {
-        pug: 'src/views/**/*.pug',
-        js: 'src/assets/js/main.js',
-        style: 'src/assets/scss/main.scss',
+        pug: [
+            'src/views/*.pug',
+            'src/views/blocks/**/*.pug',
+            'src/views/module/**/**/*.pug',
+            '!src/views/blocks/common/**/*.pug',
+            '!src/views/module/layouts/**/*.pug',
+            '!src/views/mixin/**/*.pug'
+        ],
+        js: 'src/assets/js/app.js',
+        style: 'src/assets/scss/style.scss',
         img: 'src/assets/img/**/*.*',
         fonts: 'src/assets/fonts/**/*.*'
     },
     watch: {
-        pug: 'src/views/**/*.pug',
+        pug: 'src/views/**/**/*.pug',
+        global: 'src/views/blocks/global/*.pug',
         js: 'src/assets/js/**/*.js',
         style: 'src/assets/**/**/*.scss',
         img: 'src/assets/img/**/*.*',
         fonts: 'src/assets/fonts/**/*.*'
     },
     clean: './build',
-    cleanftp: './build/*.html',
+    cleanftp: './build/**/*.html',
 };
 
 var config = {
@@ -67,12 +75,10 @@ gulp.task('cleanftp', function () {
 
 gulp.task('pug:build', function () {
     gulp.src(path.src.pug)
-        .pipe(pug({
-            pretty: true // Отключаем минификацию
-        }))
-        .pipe(gulp.dest(path.build.html));
+        .pipe(pug({pretty: true}))
+        .pipe(gulp.dest(path.build.html))
+        .pipe(reload({stream: true}));
 });
-
 
 gulp.task('js:build', function () {
     gulp.src(path.src.js)
@@ -144,9 +150,9 @@ gulp.task('watch', function(){
 gulp.task('deploy', function () {
     return gulp.src('build/**/*')
         .pipe(ftp({
-            host: '',
-            user: '',
-            pass: ''
+            host: 'dev.ucoz.club',
+            user: 'sdev',
+            pass: '1q2w3e4r5t'
         }))
         .pipe(gutil.noop());
 });
